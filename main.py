@@ -29,7 +29,7 @@ st.markdown("""
 st.markdown("<h1 style='text-align: center; color: #3b5998;'>📄 HỢP ĐỒNG THUÊ TRỌ</h1>", unsafe_allow_html=True)
 
 # Ảnh minh họa phong cách hoạt hình
-st.image("https://i.imgur.com/abcXYZ.png", caption="Ký hợp đồng thuê trọ (hoạt hình)", use_column_width=True)
+st.image("https://i.imgur.com/3JZ6h9m.jpeg", caption="Ký hợp đồng thuê trọ (hoạt hình)", use_column_width=True)
 
 # Form nhập thông tin
 with st.form("contract_form"):
