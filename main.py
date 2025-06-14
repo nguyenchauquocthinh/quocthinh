@@ -1,66 +1,72 @@
 import streamlit as st
 
-# Ảnh nền Free Fire được encode sẵn bằng base64 (ảnh bạn đã gửi)
-background_base64 = """
-iVBORw0KGgoAAAANSUhEUgAAA... (rất dài — đã rút gọn)
-"""
+st.set_page_config(page_title="Ký hợp đồng thuê trọ", page_icon="🏠", layout="centered")
 
-st.set_page_config(layout="wide", page_title="Free Fire UI", page_icon="🔥")
-
-# CSS nhúng ảnh nền từ base64
-st.markdown(
-    f"""
+# CSS nhẹ để làm đẹp giao diện
+st.markdown("""
     <style>
-    .stApp {{
-        background-image: url("data:image/png;base64,{background_base64}");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }}
-    .button-big {{
-        background-color: gold;
-        color: black;
-        font-size: 24px;
-        padding: 14px 30px;
-        border-radius: 10px;
-        border: none;
-        font-weight: bold;
+    .contract-box {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        font-size: 18px;
+    }
+    .signature {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .signature div {
+        width: 45%;
         text-align: center;
-    }}
+    }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
-# Layout UI
-col1, col2, col3 = st.columns([1, 2, 1])
+# Tiêu đề
+st.markdown("<h1 style='text-align: center; color: #3b5998;'>📄 HỢP ĐỒNG THUÊ TRỌ</h1>", unsafe_allow_html=True)
 
-with col1:
-    st.markdown("### 📦 SHOP")
-    st.markdown("### 🎡 VÒNG QUAY")
-    st.markdown("### 🧍 NHÂN VẬT")
-    st.markdown("### 🎒 TỦ ĐỒ")
-    st.markdown("### 🐶 TRỢ THỦ")
-    st.markdown("### 🔫 VŨ KHÍ")
+# Hình ảnh minh họa
+st.image("https://i.imgur.com/yXMMHMY.png", caption="Chàng trai ký hợp đồng với khách", use_column_width=True)
 
-with col2:
-    st.markdown(
-        """
-        <div style="text-align: center;">
-            <h2 style="color:white">🔥 Nhân Vật Chính 🔥</h2>
-            <img src="https://i.imgur.com/3VQWmZj.png" width="220">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+# Hộp hợp đồng
+with st.container():
+    st.markdown("<div class='contract-box'>", unsafe_allow_html=True)
+    st.markdown("### BÊN CHO THUÊ (BÊN A):")
+    st.text("Họ và tên: Nguyễn Văn Thịnh\nSố điện thoại: 0909 xxx xxx\nĐịa chỉ: 34/4C Ấp Đông Thới, Hóc Môn, TP.HCM")
 
-with col3:
-    st.markdown("#### ⚙️ Cài đặt")
-    st.markdown("#### 📬 Thư")
-    st.markdown("#### 👥 Bạn bè")
-    st.markdown("#### 🛡️ Xếp hạng")
-    st.markdown("---")
-    st.markdown('<div style="text-align:center;"><button class="button-big">BẮT ĐẦU</button></div>', unsafe_allow_html=True)
+    st.markdown("### BÊN THUÊ (BÊN B):")
+    st.text("Họ và tên: ______________________\nSố điện thoại: _______________\nCMND/CCCD: _______________")
+
+    st.markdown("### THÔNG TIN PHÒNG:")
+    st.text("Địa chỉ phòng: 12/3 Đường ABC, Quận XYZ\nGiá thuê: 2.500.000 VNĐ/tháng\nTiền cọc: 1 tháng\nThời gian thuê: 6 tháng")
+
+    st.markdown("### ĐIỀU KHOẢN:")
+    st.markdown("- Bên B phải thanh toán đúng hạn hàng tháng.\n- Không được tự ý sửa chữa, thay đổi cấu trúc phòng.\n- Nếu trả phòng trước hạn phải báo trước 30 ngày.")
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# Ký tên
+st.markdown("""
+<div class='signature'>
+  <div>
+    <strong>BÊN A</strong><br/>
+    (Chủ trọ)<br/><br/><br/>
+    Nguyễn Văn Thịnh
+  </div>
+  <div>
+    <strong>BÊN B</strong><br/>
+    (Người thuê)<br/><br/><br/>
+    Ký tên
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+# Nút xác nhận
+if st.button("✅ Xác nhận ký hợp đồng"):
+    st.success("🎉 Hợp đồng đã được ký thành công!")
+
 
 
 
