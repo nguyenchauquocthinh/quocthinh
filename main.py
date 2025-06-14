@@ -60,7 +60,7 @@ contract_html = f"""
   </p>
 
   <h3>THÔNG TIN PHÒNG:</h3>
-  <p>Địa chỉ phòng: 12/3 Đường ABC, Quận XYZ<br/>
+  <p>Địa chỉ phòng: 55 Nguyễn Thị Tràng Quận 12 <br/>
   Giá thuê: 2.500.000 VNĐ/tháng<br/>
   Tiền cọc: 1 tháng<br/>
   Thời gian thuê: 6 tháng</p>
@@ -83,7 +83,7 @@ st.markdown(f"""
   <div>
     <strong>BÊN A</strong><br/>
     (Chủ trọ)<br/><br/><br/>
-    Nguyễn Văn Thịnh
+    Nguyễn Châu Quốc Thịnh
   </div>
   <div>
     <strong>BÊN B</strong><br/>
