@@ -30,10 +30,11 @@ st.markdown("<h1 style='text-align: center; color: #3b5998;'>📄 HỢP ĐỒNG 
 
 # Ảnh minh họa phong cách hoạt hình
 st.image(
-    "https://i.imgur.com/3JZ6h9m.jpeg",
-    caption="Ký hợp đồng: Trust me bro 😎",
-    use_column_width=True
+    "https://cdn-icons-png.flaticon.com/512/4139/4139981.png",
+    caption="Ký hợp đồng hoạt hình 😄",
+    use_container_width=True
 )
+
 
 
 # Form nhập thông tin
