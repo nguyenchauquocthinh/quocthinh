@@ -1,49 +1,66 @@
 import streamlit as st
-import time
+from PIL import Image
+import base64
 
-# Tạo một dictionary lưu thông tin user
-USER_CREDENTIALS = {
-    "admin": "123456",
-    "user": "abc123"
-}
+# Cài đặt giao diện
+st.set_page_config(layout="wide", page_title="Free Fire UI", page_icon="🔥")
 
-# Thiết lập giao diện
-st.set_page_config(page_title="Đăng nhập", page_icon="🔐", layout="centered")
+# CSS nền và giao diện
+def set_bg(image_path):
+    with open(image_path, "rb") as img:
+        encoded = base64.b64encode(img.read()).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{encoded}");
+            background-size: cover;
+            background-position: center;
+        }}
+        .center {{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            flex-direction: column;
+        }}
+        .button-big {{
+            background-color: gold;
+            color: black;
+            font-size: 24px;
+            padding: 14px 30px;
+            border-radius: 10px;
+            border: none;
+            font-weight: bold;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
-# Hiệu ứng login
-def login_animation():
-    with st.spinner('Đang kiểm tra thông tin...'):
-        time.sleep(1.5)
+set_bg("freefire_bg.png")
 
-# Trang chính sau khi đăng nhập thành công
-def main_page(username):
-    st.success(f"🎉 Xin chào {username}, bạn đã đăng nhập thành công!")
-    st.balloons()
-    st.write("Chào mừng bạn đến với hệ thống!")
+# Layout chia 3 cột
+col1, col2, col3 = st.columns([1, 2, 1])
 
-# Giao diện đăng nhập
-def login_page():
-    st.markdown("## 🔐 Đăng Nhập Hệ Thống")
-    username = st.text_input("👤 Tên đăng nhập")
-    password = st.text_input("🔑 Mật khẩu", type="password")
+with col1:
+    st.markdown("### 📦 SHOP")
+    st.markdown("### 🎡 VÒNG QUAY")
+    st.markdown("### 🧍 NHÂN VẬT")
+    st.markdown("### 🎒 TỦ ĐỒ")
+    st.markdown("### 🐶 TRỢ THỦ")
+    st.markdown("### 🔫 VŨ KHÍ")
 
-    login_btn = st.button("Đăng nhập")
+with col2:
+    st.markdown('<div class="center"><h2 style="color:white">🔥 Nhân Vật Chính 🔥</h2><img src="https://i.imgur.com/3VQWmZj.png" width="220"></div>', unsafe_allow_html=True)
 
-    if login_btn:
-        login_animation()
-        if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
-            st.session_state["logged_in"] = True
-            st.session_state["username"] = username
-            st.experimental_rerun()
-        else:
-            st.error("Sai tên đăng nhập hoặc mật khẩu!")
+with col3:
+    st.markdown("#### ⚙️ Cài đặt")
+    st.markdown("#### 📬 Thư")
+    st.markdown("#### 👥 Bạn bè")
+    st.markdown("#### 🛡️ Xếp hạng")
 
-# Điều hướng
-if "logged_in" not in st.session_state:
-    st.session_state["logged_in"] = False
+    st.markdown("---")
+    st.markdown('<div style="text-align:center;"><button class="button-big">BẮT ĐẦU</button></div>', unsafe_allow_html=True)
 
-if st.session_state["logged_in"]:
-    main_page(st.session_state["username"])
-else:
-    login_page()
 
