@@ -28,10 +28,17 @@ st.markdown("""
 # Tiêu đề
 st.markdown("<h1 style='text-align: center; color: #3b5998;'>📄 HỢP ĐỒNG THUÊ TRỌ</h1>", unsafe_allow_html=True)
 
-# Ảnh minh họa
-st.image("https://i.imgur.com/yXMMHMY.png", caption="Chàng trai ký hợp đồng với khách", use_column_width=True)
+# Ảnh minh họa phong cách hoạt hình
+st.image("https://i.imgur.com/1qVtIvu.png", caption="Hoạt hình: Ký hợp đồng thuê trọ", use_column_width=True)
 
-# Hộp nội dung hợp đồng (gộp tất cả lại một khối markdown)
+# Form nhập thông tin
+with st.form("contract_form"):
+    ten = st.text_input("Họ tên người thuê", key="ten")
+    sdt = st.text_input("Số điện thoại người thuê", key="sdt")
+    cccd = st.text_input("Số CCCD/CMND", key="cccd")
+    submit = st.form_submit_button("✅ Xác nhận ký hợp đồng")
+
+# Hộp nội dung hợp đồng
 contract_html = f"""
 <div class='contract-box'>
   <h3>BÊN CHO THUÊ (BÊN A):</h3>
@@ -41,9 +48,9 @@ contract_html = f"""
 
   <h3>BÊN THUÊ (BÊN B):</h3>
   <p>
-    Họ tên: <strong>{st.session_state.get('ten', '_________________')}</strong><br/>
-    SĐT: <strong>{st.session_state.get('sdt', '_________________')}</strong><br/>
-    CCCD/CMND: <strong>{st.session_state.get('cccd', '_________________')}</strong>
+    Họ tên: <strong>{ten if ten else "_______________"}</strong><br/>
+    SĐT: <strong>{sdt if sdt else "_______________"}</strong><br/>
+    CCCD/CMND: <strong>{cccd if cccd else "_______________"}</strong>
   </p>
 
   <h3>THÔNG TIN PHÒNG:</h3>
@@ -60,13 +67,6 @@ contract_html = f"""
   </ul>
 </div>
 """
-
-# Form nhập thông tin
-with st.form("contract_form"):
-    ten = st.text_input("Họ tên người thuê", key="ten")
-    sdt = st.text_input("Số điện thoại người thuê", key="sdt")
-    cccd = st.text_input("Số CCCD/CMND", key="cccd")
-    submit = st.form_submit_button("✅ Xác nhận ký hợp đồng")
 
 # Hiển thị hợp đồng
 st.markdown(contract_html, unsafe_allow_html=True)
@@ -93,3 +93,4 @@ if submit:
         st.success(f"🎉 Hợp đồng đã được ký thành công với {ten}!")
     else:
         st.warning("⚠️ Vui lòng nhập đầy đủ thông tin người thuê trước khi ký.")
+
