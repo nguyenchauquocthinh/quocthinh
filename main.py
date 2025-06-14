@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Ký hợp đồng thuê trọ", page_icon="🏠", layout="centered")
 
-# CSS giao diện (bọc trong <style> đúng chuẩn)
+# CSS giao diện
 st.markdown("""
     <style>
     .contract-box {
@@ -28,30 +28,51 @@ st.markdown("""
 # Tiêu đề
 st.markdown("<h1 style='text-align: center; color: #3b5998;'>📄 HỢP ĐỒNG THUÊ TRỌ</h1>", unsafe_allow_html=True)
 
-# Ảnh minh họa (chàng trai ký hợp đồng)
+# Ảnh minh họa
 st.image("https://i.imgur.com/yXMMHMY.png", caption="Chàng trai ký hợp đồng với khách", use_column_width=True)
 
-# Hộp nội dung hợp đồng
-st.markdown("<div class='contract-box'>", unsafe_allow_html=True)
+# Hộp nội dung hợp đồng (gộp tất cả lại một khối markdown)
+contract_html = f"""
+<div class='contract-box'>
+  <h3>BÊN CHO THUÊ (BÊN A):</h3>
+  <p>Họ và tên: Nguyễn Văn Thịnh<br/>
+  SĐT: 0909 xxx xxx<br/>
+  Địa chỉ: 34/4C Ấp Đông Thới, Hóc Môn</p>
 
-st.markdown("### BÊN CHO THUÊ (BÊN A):")
-st.text("Họ và tên: Nguyễn Văn Thịnh\nSĐT: 0909 xxx xxx\nĐịa chỉ: 34/4C Ấp Đông Thới, Hóc Môn")
+  <h3>BÊN THUÊ (BÊN B):</h3>
+  <p>
+    Họ tên: <strong>{st.session_state.get('ten', '_________________')}</strong><br/>
+    SĐT: <strong>{st.session_state.get('sdt', '_________________')}</strong><br/>
+    CCCD/CMND: <strong>{st.session_state.get('cccd', '_________________')}</strong>
+  </p>
 
-st.markdown("### BÊN THUÊ (BÊN B):")
-ten = st.text_input("Họ tên người thuê")
-sdt = st.text_input("Số điện thoại người thuê")
-cccd = st.text_input("Số CCCD/CMND")
+  <h3>THÔNG TIN PHÒNG:</h3>
+  <p>Địa chỉ phòng: 12/3 Đường ABC, Quận XYZ<br/>
+  Giá thuê: 2.500.000 VNĐ/tháng<br/>
+  Tiền cọc: 1 tháng<br/>
+  Thời gian thuê: 6 tháng</p>
 
-st.markdown("### THÔNG TIN PHÒNG:")
-st.text("Địa chỉ phòng: 12/3 Đường ABC, Quận XYZ\nGiá thuê: 2.500.000 VNĐ/tháng\nTiền cọc: 1 tháng\nThời gian thuê: 6 tháng")
+  <h3>ĐIỀU KHOẢN:</h3>
+  <ul>
+    <li>Thanh toán đúng hạn mỗi tháng.</li>
+    <li>Không tự ý sửa chữa phòng.</li>
+    <li>Trả phòng sớm cần báo trước 30 ngày.</li>
+  </ul>
+</div>
+"""
 
-st.markdown("### ĐIỀU KHOẢN:")
-st.markdown("- Thanh toán đúng hạn mỗi tháng.\n- Không tự ý sửa chữa phòng.\n- Trả phòng sớm cần báo trước 30 ngày.")
+# Form nhập thông tin
+with st.form("contract_form"):
+    ten = st.text_input("Họ tên người thuê", key="ten")
+    sdt = st.text_input("Số điện thoại người thuê", key="sdt")
+    cccd = st.text_input("Số CCCD/CMND", key="cccd")
+    submit = st.form_submit_button("✅ Xác nhận ký hợp đồng")
 
-st.markdown("</div>", unsafe_allow_html=True)
+# Hiển thị hợp đồng
+st.markdown(contract_html, unsafe_allow_html=True)
 
 # Ký tên
-st.markdown("""
+st.markdown(f"""
 <div class='signature'>
   <div>
     <strong>BÊN A</strong><br/>
@@ -61,20 +82,14 @@ st.markdown("""
   <div>
     <strong>BÊN B</strong><br/>
     (Người thuê)<br/><br/><br/>
-    {ten}
+    {ten if ten else 'Ký tên'}
   </div>
 </div>
-""".format(ten=ten if ten else "Ký tên"), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
-# Nút xác nhận
-if st.button("✅ Xác nhận ký hợp đồng"):
+# Kết quả
+if submit:
     if ten and sdt and cccd:
         st.success(f"🎉 Hợp đồng đã được ký thành công với {ten}!")
     else:
         st.warning("⚠️ Vui lòng nhập đầy đủ thông tin người thuê trước khi ký.")
-
-
-
-
-
-
