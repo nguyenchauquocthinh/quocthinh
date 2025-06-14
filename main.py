@@ -29,7 +29,7 @@ st.markdown("""
 st.markdown("<h1 style='text-align: center; color: #3b5998;'>📄 HỢP ĐỒNG THUÊ TRỌ</h1>", unsafe_allow_html=True)
 
 # Ảnh minh họa phong cách hoạt hình
-st.image("https://i.imgur.com/1qVtIvu.png", caption="Hoạt hình: Ký hợp đồng thuê trọ", use_column_width=True)
+st.image("https://i.imgur.com/abcXYZ.png", caption="Ký hợp đồng thuê trọ (hoạt hình)", use_column_width=True)
 
 # Form nhập thông tin
 with st.form("contract_form"):
@@ -42,8 +42,8 @@ with st.form("contract_form"):
 contract_html = f"""
 <div class='contract-box'>
   <h3>BÊN CHO THUÊ (BÊN A):</h3>
-  <p>Họ và tên: Nguyễn Văn Thịnh<br/>
-  SĐT: 0909 xxx xxx<br/>
+  <p>Họ và tên: Nguyễn Châu Quốc Thịnh<br/>
+  SĐT: 0353041765<br/>
   Địa chỉ: 34/4C Ấp Đông Thới, Hóc Môn</p>
 
   <h3>BÊN THUÊ (BÊN B):</h3>
