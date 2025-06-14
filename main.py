@@ -1,16 +1,18 @@
 import streamlit as st
-import base64
+
+# Ảnh nền Free Fire được encode sẵn bằng base64 (ảnh bạn đã gửi)
+background_base64 = """
+iVBORw0KGgoAAAANSUhEUgAAA... (rất dài — đã rút gọn)
+"""
 
 st.set_page_config(layout="wide", page_title="Free Fire UI", page_icon="🔥")
 
-# Đọc ảnh nền
-def set_bg(image_file):
-    with open(image_file, "rb") as f:
-        data = base64.b64encode(f.read()).decode()
-    bg_style = f"""
+# CSS nhúng ảnh nền từ base64
+st.markdown(
+    f"""
     <style>
     .stApp {{
-        background-image: url("data:image/png;base64,{data}");
+        background-image: url("data:image/png;base64,{background_base64}");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -26,13 +28,11 @@ def set_bg(image_file):
         text-align: center;
     }}
     </style>
-    """
-    st.markdown(bg_style, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
-# ✅ Sửa đường dẫn đúng với file bạn vừa tải lên
-set_bg("/mnt/data/0a0f4242-2f0a-44b0-a56a-eb057f681079.png")
-
-# Layout
+# Layout UI
 col1, col2, col3 = st.columns([1, 2, 1])
 
 with col1:
@@ -61,6 +61,7 @@ with col3:
     st.markdown("#### 🛡️ Xếp hạng")
     st.markdown("---")
     st.markdown('<div style="text-align:center;"><button class="button-big">BẮT ĐẦU</button></div>', unsafe_allow_html=True)
+
 
 
 
